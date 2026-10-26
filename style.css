@@ -1,16 +1,273 @@
-body{font-family:system-ui,sans-serif;max-width:65rem;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#222}
-nav{display:flex;gap:1rem;flex-wrap:wrap}
-table{border-collapse:collapse;width:100%}
-th,td{border:1px solid #bbb;padding:.5rem;text-align:left}
-label{display:block;margin:.7rem 0}
-input,select,button{font:inherit;padding:.3rem}
-footer{margin-top:3rem;border-top:1px solid #bbb}
-a{color:#164c8c}
-pre{background:#f3f3f3;padding:1rem;overflow:auto}
-aside{border-left:4px solid #888;padding:.6rem 1rem}
-h2{margin-top:2rem}
-:focus-visible{outline:3px solid #aa5b00}
- @media print{nav{display:none}
-body{max-width:none}
+/* Punt de Joc · identidad visual: cálida, de mesa de juegos, cercana y legible */
+
+:root{
+  --fondo:#fbf6ec;
+  --superficie:#fffdf8;
+  --texto:#2a2433;
+  --texto-suave:#5b5468;
+  --borde:#e4d9c3;
+  --marca:#5b3fa0;
+  --marca-oscura:#3f2a78;
+  --acento:#f2a900;
+  --acento-2:#e4572e;
+  --acento-3:#2a9d8f;
+  --enlace:#4a2f93;
+  --foco:#c2410c;
+  --radio:14px;
+  --sombra:0 2px 0 rgba(42,36,51,.06),0 8px 24px -12px rgba(42,36,51,.25);
 }
 
+@media (prefers-color-scheme:dark){
+  :root{
+    --fondo:#17131f;
+    --superficie:#211b2d;
+    --texto:#f3eee4;
+    --texto-suave:#b9b0c8;
+    --borde:#3a3150;
+    --marca:#9b82e6;
+    --marca-oscura:#2b2142;
+    --enlace:#c3b2ff;
+    --foco:#ffb454;
+    --sombra:0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  max-width:65rem;
+  margin:0 auto;
+  padding:0 1rem 2rem;
+  line-height:1.65;
+  color:var(--texto);
+  background:
+    radial-gradient(circle at 1px 1px,rgba(91,63,160,.09) 1.2px,transparent 1.4px) 0 0/22px 22px,
+    var(--fondo);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+main{flex:1}
+
+/* Navegación */
+nav{
+  display:flex;
+  gap:.4rem;
+  flex-wrap:wrap;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+  margin:0 -1rem;
+  padding:.75rem 1rem;
+  background:var(--marca-oscura);
+  border-bottom:4px solid var(--acento);
+  box-shadow:0 4px 14px -6px rgba(0,0,0,.4);
+}
+nav::before{
+  content:"🎲 Punt de Joc";
+  font-weight:800;
+  letter-spacing:.02em;
+  color:#fff;
+  margin-right:auto;
+  padding-right:1rem;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:.45rem .9rem;
+  border-radius:999px;
+  transition:background .2s,color .2s,transform .2s;
+}
+nav a:hover{background:var(--acento);color:#2a2433;transform:translateY(-1px)}
+nav a:focus-visible{outline-color:#fff}
+
+/* Tipografía */
+h1,h2,h3{line-height:1.2;font-weight:800;letter-spacing:-.01em}
+h1{
+  font-size:clamp(2rem,5vw,3.2rem);
+  margin:2.5rem 0 1rem;
+  color:var(--marca);
+}
+h1::after{
+  content:"";
+  display:block;
+  width:5rem;
+  height:.4rem;
+  margin-top:.6rem;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--acento),var(--acento-2),var(--acento-3));
+}
+h2{font-size:1.5rem;margin-top:2.5rem}
+main>h2::before{
+  content:"";
+  display:inline-block;
+  width:.7rem;height:.7rem;
+  margin-right:.55rem;
+  background:var(--acento-2);
+  transform:rotate(45deg);
+  border-radius:2px;
+}
+p{max-width:60ch}
+main>h1+p{font-size:1.2rem;color:var(--texto-suave)}
+
+a{color:var(--enlace);text-underline-offset:.2em;text-decoration-thickness:2px}
+a:hover{color:var(--acento-2)}
+
+/* Actividades como fichas */
+main{display:block}
+article{
+  position:relative;
+  background:var(--superficie);
+  border:1px solid var(--borde);
+  border-left:8px solid var(--acento);
+  border-radius:var(--radio);
+  padding:1rem 1.4rem 1.2rem;
+  margin:1.2rem 0;
+  box-shadow:var(--sombra);
+  transition:transform .2s,box-shadow .2s;
+}
+article:nth-of-type(2n){border-left-color:var(--acento-3)}
+article:nth-of-type(3n){border-left-color:var(--acento-2)}
+article:hover{transform:translateY(-3px)}
+article h2{margin:.2rem 0 .4rem;color:var(--marca)}
+article p{margin:.2rem 0 .6rem;color:var(--texto-suave)}
+article a{
+  display:inline-block;
+  padding:.4rem 1rem;
+  border-radius:999px;
+  background:var(--marca);
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+}
+article a:hover{background:var(--acento);color:#2a2433}
+
+/* Enlace de llamada a la acción de la portada */
+main>p>a:only-child{
+  display:inline-block;
+  padding:.7rem 1.4rem;
+  border-radius:999px;
+  background:var(--acento);
+  color:#2a2433;
+  font-weight:800;
+  text-decoration:none;
+  box-shadow:0 4px 0 #b57f00;
+  transition:transform .15s,box-shadow .15s;
+}
+main>p>a:only-child:hover{transform:translateY(2px);box-shadow:0 2px 0 #b57f00;color:#2a2433}
+main>p>a:only-child::after{content:" →"}
+
+/* Listas (participantes) */
+ul{
+  list-style:none;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+}
+ul li{
+  background:var(--superficie);
+  border:1px solid var(--borde);
+  border-radius:999px;
+  padding:.35rem 1rem;
+  font-weight:600;
+  box-shadow:var(--sombra);
+}
+ul li::before{content:"♟ ";color:var(--acento-2)}
+
+/* Tablas */
+table{
+  border-collapse:separate;
+  border-spacing:0;
+  width:100%;
+  background:var(--superficie);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  overflow:hidden;
+  box-shadow:var(--sombra);
+  margin:1rem 0 2rem;
+}
+caption{
+  caption-side:top;
+  text-align:left;
+  padding:0 .2rem .5rem;
+  font-weight:700;
+  color:var(--texto-suave);
+  font-style:italic;
+}
+th,td{padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--borde)}
+th{background:var(--marca);color:#fff;font-weight:700}
+tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even) td,table tr:nth-child(even) td{background:rgba(91,63,160,.06)}
+tr:hover td{background:rgba(242,169,0,.18)}
+td:first-child{font-variant-numeric:tabular-nums}
+
+/* Formularios (futuras inscripciones) */
+label{display:block;margin:.8rem 0;font-weight:600}
+input,select,button,textarea{
+  font:inherit;
+  padding:.55rem .75rem;
+  border:2px solid var(--borde);
+  border-radius:10px;
+  background:var(--superficie);
+  color:var(--texto);
+}
+input:hover,select:hover,textarea:hover{border-color:var(--marca)}
+button{
+  background:var(--marca);
+  color:#fff;
+  border-color:var(--marca);
+  font-weight:700;
+  cursor:pointer;
+}
+button:hover{background:var(--acento);border-color:var(--acento);color:#2a2433}
+
+/* Avisos y código */
+aside{
+  margin:2rem 0;
+  padding:.9rem 1.2rem;
+  background:rgba(242,169,0,.15);
+  border:1px dashed var(--acento);
+  border-left:6px solid var(--acento);
+  border-radius:10px;
+  color:var(--texto);
+}
+aside::before{content:"ℹ️ ";}
+pre{background:#231c33;color:#f3eee4;padding:1rem;overflow:auto;border-radius:10px}
+
+/* Pie */
+footer{
+  margin:3rem -1rem -2rem;
+  padding:1.2rem 1rem;
+  text-align:center;
+  font-size:.9rem;
+  color:#d9d0ea;
+  background:var(--marca-oscura);
+  border-top:4px solid var(--acento);
+}
+
+/* Accesibilidad */
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+
+@media (max-width:40rem){
+  nav::before{flex-basis:100%;margin-bottom:.2rem}
+  th,td{padding:.5rem .55rem;font-size:.95rem}
+  article{padding:.8rem 1rem 1rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;scroll-behavior:auto!important}
+  article:hover,nav a:hover{transform:none}
+}
+
+@media print{
+  nav,footer{display:none}
+  body{max-width:none;background:#fff;color:#000}
+  article,table,ul li{box-shadow:none}
+  a{color:#000}
+}
