@@ -15,16 +15,22 @@ function h(string $text): string { return htmlspecialchars($text, ENT_QUOTES, 'U
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<nav>
+<a href="../../index.html">Inicio</a>
+<a href="../activitats.html">Actividades</a>
+<a href="../torneig.html">Torneo</a>
+<a href="index.php" aria-current="page">Actividades Dinamico</a>
+</nav>
+<main>
 <h1>Actividades de Punto de Juego</h1>
 <?php foreach ($activitats as $activitat): ?>
 <article>
-<h2><?= h($activitat['titol']) ?>
-</h2>
-<p><?= h($activitat['tipus']) ?>
-</p>
+<h2><?= h($activitat['titol']) ?></h2>
+<p><?= h($activitat['tipus']) ?></p>
 </article>
 <?php endforeach; ?>
-<p>Respuesta generada en el servidor: <?= date('H:i:s') ?>
-</p>
+<p class="servidor">Respuesta generada en el servidor: <time><?= date('H:i:s') ?></time></p>
+</main>
+<footer>DAW2 · AEA2 · RA1</footer>
 </body>
 </html>
