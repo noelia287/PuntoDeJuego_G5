@@ -1,0 +1,291 @@
+/* Punt de Joc · página con datos de MariaDB, misma identidad visual que el portal */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap");
+
+:root{
+  --fondo:#f4efe4;
+  --carta:#ffffff;
+  --tinta:#141414;
+  --tinta-suave:#4a4a4a;
+  --amarillo:#ffd23f;
+  --rosa:#ff6b9d;
+  --azul:#3a86ff;
+  --verde:#06d6a0;
+  --linea:3px solid var(--tinta);
+  --sombra:6px 6px 0 var(--tinta);
+  --sombra-peque:3px 3px 0 var(--tinta);
+  --radio:12px;
+}
+
+@media (prefers-color-scheme:dark){
+  :root{
+    --fondo:#16161a;
+    --carta:#232329;
+    --tinta:#f4efe4;
+    --tinta-suave:#c4c0b8;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  max-width:62rem;
+  margin:0 auto;
+  padding:1rem 1rem 2rem;
+  line-height:1.6;
+  color:var(--tinta);
+  background:
+    repeating-linear-gradient(45deg,transparent 0 18px,rgba(127,127,127,.07) 18px 20px),
+    var(--fondo);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+main{flex:1}
+
+/* Navegación */
+nav{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+  align-items:center;
+  position:sticky;
+  top:.75rem;
+  z-index:10;
+  padding:.6rem .8rem;
+  background:var(--carta);
+  border:var(--linea);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+}
+nav::before{
+  content:"♠ Punt de Joc";
+  font-weight:700;
+  font-size:1.15rem;
+  margin-right:auto;
+  padding:.2rem .7rem;
+  background:var(--amarillo);
+  color:#141414;
+  border:var(--linea);
+  border-radius:8px;
+  transform:rotate(-2deg);
+}
+nav a{
+  color:var(--tinta);
+  text-decoration:none;
+  font-weight:700;
+  padding:.35rem .85rem;
+  border:2px solid transparent;
+  border-radius:8px;
+  transition:transform .15s,box-shadow .15s,background .15s;
+}
+nav a:hover{
+  background:var(--azul);
+  color:#fff;
+  border-color:var(--tinta);
+  box-shadow:var(--sombra-peque);
+  transform:translate(-2px,-2px);
+}
+nav a[aria-current="page"]{border-color:var(--tinta);background:var(--verde);color:#141414}
+
+/* Tipografía */
+h1,h2,h3{line-height:1.15;font-weight:700;letter-spacing:-.02em}
+h1{
+  font-size:clamp(2.3rem,6vw,4rem);
+  margin:3rem 0 1rem;
+  display:inline-block;
+  padding:0 .15em;
+  background:linear-gradient(transparent 60%,var(--rosa) 60% 90%,transparent 90%);
+}
+h2{font-size:1.6rem;margin-top:2.8rem}
+main>h2{display:inline-block;padding:.15rem .7rem;background:var(--tinta);color:var(--fondo);border-radius:6px;transform:rotate(-1deg)}
+p{max-width:60ch}
+main>h1+p{font-size:1.25rem;color:var(--tinta-suave)}
+
+a{color:var(--tinta);text-decoration-color:var(--rosa);text-underline-offset:.2em;text-decoration-thickness:3px}
+a:hover{text-decoration-color:var(--azul)}
+
+/* Actividades como cartas */
+article{
+  background:var(--carta);
+  border:var(--linea);
+  border-radius:var(--radio);
+  padding:0 1.4rem 1.3rem;
+  margin:1.8rem 0;
+  box-shadow:var(--sombra);
+  overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+}
+article::before{
+  content:"";
+  display:block;
+  height:.9rem;
+  margin:0 -1.4rem 1rem;
+  background:var(--amarillo);
+  border-bottom:var(--linea);
+}
+article:nth-of-type(2n)::before{background:var(--azul)}
+article:nth-of-type(3n)::before{background:var(--rosa)}
+article:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--tinta)}
+article h2,article h3{margin:0 0 .4rem}
+article p{margin:.2rem 0 .9rem;color:var(--tinta-suave)}
+article a{
+  display:inline-block;
+  padding:.45rem 1rem;
+  background:var(--verde);
+  color:#141414;
+  font-weight:700;
+  text-decoration:none;
+  border:var(--linea);
+  border-radius:8px;
+  box-shadow:var(--sombra-peque);
+  transition:transform .15s,box-shadow .15s;
+}
+article a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--tinta)}
+
+/* Enlace de llamada a la acción de la portada */
+main>p>a:only-child{
+  display:inline-block;
+  padding:.8rem 1.5rem;
+  background:var(--amarillo);
+  color:#141414;
+  font-weight:700;
+  font-size:1.1rem;
+  text-decoration:none;
+  border:var(--linea);
+  border-radius:10px;
+  box-shadow:var(--sombra);
+  transition:transform .15s,box-shadow .15s;
+}
+main>p>a:only-child:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--tinta)}
+main>p>a:only-child::after{content:" →"}
+
+/* Listas (participantes) como fichas de jugador */
+ul{
+  list-style:none;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.9rem;
+}
+ul li{
+  background:var(--carta);
+  border:var(--linea);
+  border-radius:999px;
+  padding:.4rem 1.1rem .4rem .4rem;
+  font-weight:700;
+  box-shadow:var(--sombra-peque);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+ul li::before{
+  content:"";
+  width:1.6rem;height:1.6rem;
+  border-radius:50%;
+  border:var(--linea);
+  background:var(--amarillo);
+}
+ul li:nth-child(4n+2)::before{background:var(--rosa)}
+ul li:nth-child(4n+3)::before{background:var(--azul)}
+ul li:nth-child(4n)::before{background:var(--verde)}
+
+/* Tablas */
+table{
+  border-collapse:separate;
+  border-spacing:0;
+  width:100%;
+  background:var(--carta);
+  border:var(--linea);
+  border-radius:var(--radio);
+  overflow:hidden;
+  box-shadow:var(--sombra);
+  margin:1rem 0 2rem;
+}
+caption{
+  caption-side:top;
+  text-align:left;
+  padding:0 .2rem .5rem;
+  font-weight:700;
+  color:var(--tinta-suave);
+}
+th,td{padding:.75rem 1rem;text-align:left;border-bottom:2px solid var(--tinta)}
+th{background:var(--amarillo);color:#141414;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.06em}
+tr:last-child td{border-bottom:0}
+tr:nth-child(odd) td{background:rgba(127,127,127,.08)}
+tr:hover td{background:rgba(58,134,255,.18)}
+td:first-child{font-variant-numeric:tabular-nums;font-weight:700}
+
+/* Formularios (futuras inscripciones) */
+label{display:block;margin:.8rem 0;font-weight:700}
+input,select,button,textarea{
+  font:inherit;
+  padding:.55rem .75rem;
+  border:var(--linea);
+  border-radius:8px;
+  background:var(--carta);
+  color:var(--tinta);
+}
+input:focus,select:focus,textarea:focus{box-shadow:var(--sombra-peque)}
+button{
+  background:var(--azul);
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:var(--sombra-peque);
+}
+button:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--tinta)}
+
+/* Avisos (nota adhesiva) y código */
+aside{
+  margin:2.5rem 0;
+  max-width:36rem;
+  padding:1rem 1.2rem;
+  background:var(--amarillo);
+  color:#141414;
+  border:var(--linea);
+  border-radius:4px;
+  box-shadow:var(--sombra);
+  transform:rotate(-1.2deg);
+  font-weight:500;
+}
+aside::before{content:"📌 ";}
+pre{background:#141414;color:#f4efe4;padding:1rem;overflow:auto;border:var(--linea);border-radius:var(--radio)}
+
+/* Pie */
+footer{
+  margin-top:3rem;
+  padding:1rem;
+  text-align:center;
+  font-weight:700;
+  font-size:.9rem;
+  background:var(--carta);
+  border:var(--linea);
+  border-radius:var(--radio);
+  box-shadow:var(--sombra);
+}
+
+/* Accesibilidad */
+:focus-visible{outline:3px dashed var(--azul);outline-offset:3px}
+
+@media (max-width:40rem){
+  nav{position:static}
+  nav::before{flex-basis:100%;text-align:center;margin:0 0 .3rem}
+  th,td{padding:.55rem .6rem;font-size:.95rem}
+  article{padding:0 1rem 1rem}
+  article::before{margin:0 -1rem 1rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;scroll-behavior:auto!important}
+  article:hover,nav a:hover,button:hover,article a:hover,main>p>a:only-child:hover{transform:none}
+}
+
+@media print{
+  nav,footer{display:none}
+  body{max-width:none;background:#fff;color:#000}
+  article,table,ul li,aside{box-shadow:none;transform:none}
+}

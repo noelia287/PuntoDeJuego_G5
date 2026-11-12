@@ -20,6 +20,7 @@ function h(string $text): string { return htmlspecialchars($text, ENT_QUOTES, 'U
 <a href="../activitats.html">Actividades</a>
 <a href="../torneig.html">Torneo</a>
 <a href="index.php" aria-current="page">Actividades Dinamico</a>
+<a href="/bdd/">Base de datos</a>
 </nav>
 <main>
 <h1>Actividades de Punto de Juego</h1>
