@@ -24,10 +24,15 @@ Práctica de DAW2 · M08 · AEA2.
 ├── documentacion/
 │   ├── recursos.md         # Recursos necesarios y no necesarios en esta versión
 │   └── evidencias.md       # Evidencias del despliegue
+├── bdd/                    # Etapa 3 · Portal PHP con MariaDB
+├── api-js/                 # Ampliación · API JavaScript con Node.js
+├── java/                   # Etapa 4 · Gestor de torneos (tornejos.war en Tomcat)
 └── README.md
 ```
 
 La web la forman `index.html` y la carpeta `portal/`. La carpeta `documentacion/` no se despliega.
+
+La aplicación Java se despliega en Tomcat, no en Apache: requisitos, versión del WAR y pasos en [java/README.md](java/README.md).
 
 ## Requisitos
 

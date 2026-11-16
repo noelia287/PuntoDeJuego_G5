@@ -1,0 +1,12 @@
+<!--
+  Contexto de Tomcat para /tornejos. Copiar fuera del repositorio:
+    Ubuntu: /etc/tomcat10/Catalina/localhost/tornejos.xml
+    Fedora: /etc/tomcat/Catalina/localhost/tornejos.xml
+  Sustituir CAMBIAR por la contraseña propia de cada ordenador.
+  Este ejemplo no contiene credenciales reales; el archivo real no se sube a Git.
+-->
+<Context>
+  <Environment name="jdbcUrl" type="java.lang.String" value="jdbc:mariadb://127.0.0.1:3306/puntdejoc" override="false"/>
+  <Environment name="jdbcUser" type="java.lang.String" value="tornejos_java" override="false"/>
+  <Environment name="jdbcPassword" type="java.lang.String" value="CAMBIAR" override="false"/>
+</Context>
